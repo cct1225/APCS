@@ -2,11 +2,6 @@
 using namespace std;
 int main()
 {
-    #include<iostream>
-#include<algorithm>
-using namespace std;
-int main()
-{
     int n,a[101],cost=0;
     cin>>n;
     for(int i=0;i<n;i++)
@@ -30,5 +25,4 @@ int main()
         
     }
     cout<<cost;
-}
 }
