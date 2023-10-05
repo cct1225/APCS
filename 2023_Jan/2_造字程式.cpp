@@ -20,7 +20,6 @@ int main()
             cin>>a[j];
             c[i][a[j]]=c[i-1][j];
         }
-
     }
     for(int i=1;i<=lines;i++)
     {
