@@ -5,70 +5,67 @@
 using namespace std;
 int main()
 {
-    int n,m,a[100],cnt=0,length=0;
-    string b[100],s;
+    int n,m,cnt=0,length=0;
+    string s1[100],s2,s,news;
     char c;
     deque<char>ans;
     deque<char>d;
     cin>>n>>m;
-    for(int i=1;i<=m;i++)
-    {
-        cin>>a[i];
-        if(a[i]==1) cnt++;
-    }
     for(int j=0;j<n;j++)
     {
-        
+        cin>>s1[j];// 輸入1&0
     }
-    for(int i=1;i<=m;i++)
+    cin>>s2;
+    for(int j=n-1;j>=0;j--)
     {
-        cin>>c;
-        ans.push_back(c);
-    }
-    cout<<"---------------"<<endl;
-    cout<<"check:"<<endl;
-    for(int i=0;i<m;i++)
-    {
-        cout<<ans.at(i)<<" ";
-    }
-    cout<<endl;
-    cout<<"---------------";
-    for(int i=m;i>=1;i--)
-    {
-        if(a[i]==0)
+     
+        if(j<n-1)    s2=news;
+        cnt=0;
+        s.clear();
+        news.clear();
+        d.clear();
+        ans.clear();
+        for(int i=0;i<m;i++)
         {
-            d.push_back(ans.at(i-1));
-            ans.pop_back();
+            if(s1[j][i]=='1') cnt++;
         }
-        else
+        for(int i=0;i<m;i++)
         {
-            d.push_front(ans.at(i-1));
-            ans.pop_back();
+            ans.push_back(s2[i]);
         }
-    }
-    cout<<endl;
-    for(int i=m;i>=1;i--)
-    {
-        cout<<d.at(i-1)<<" ";
-        s+=d.at(i-1);
-    }
-    cout<<endl;
-    cout<<s<<endl;
-    if(cnt%2==1)
-    {
-        if(d.size()%2==1)//位數為奇數個
+        for(int i=m;i>=1;i--)
         {
-            cout<<s.substr(((d.size()-1)/2)+1,(d.size()-1));
-            cout<<s[(d.size()-1)/2];
-            cout<<s.substr(0,((d.size()-1)/2));
+            if(s1[j][i-1]=='0')
+            {
+                d.push_back(ans.at(i-1));
+                ans.pop_back();
+            }
+            else
+            {
+                d.push_front(ans.at(i-1));
+                ans.pop_back();
+            }
         }
-        else//位數為偶數個
+        for(int i=m;i>=1;i--)
         {
-            cout<<s.substr((d.size()-1)/2,(d.size()-1));
-            cout<<s.substr(0,((d.size()-1)/2)-1);
+            s+=d.at(i-1);
         }
+        if(cnt%2==1)
+        {
+            if(d.size()%2==1)//位數為奇數個
+            {
+                news+=s.substr(((d.size()-1)/2)+1,(d.size()-1));
+                news+=s[(d.size()-1)/2];
+                news+=s.substr(0,((d.size()-1)/2));
+            }
+            else//位數為偶數個
+            {
+                news+=s.substr((d.size()+1)/2,d.size());
+                news+=s.substr(0,(d.size()+1)/2);
+            }
     }
-    else    cout<<s;
-
+    else    news=s;
+    }  
+    cout<<news;
     return 0;
 }
